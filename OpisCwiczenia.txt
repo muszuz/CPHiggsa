@@ -1,0 +1,43 @@
+Temat: "Badanie parzystości bozonu Higgsa"
+
+Opis: W lipcu 2012 roku w laboratorium CERN ogłoszono odkrycie cząstki, która może być od dawna poszukiwanym
+      bozonem Higgsa. Jednoznaczne stwierdzenie czy to jest bozon Higgsa wymaga wyznaczanie wielu własności nowej cząstki, 
+      w szczególności jej parzystości (P). Parzystość cząstki bada się analizując korelacje kątowe produktów rozpadu.
+      Przedmiotem ćwiczenia jest analiza kątowych korelacji produktów rozpadu bozonu Higgsa w celu wyznaczenia jego parzystości.
+      Ćwiczenie jest oparte o analizę symulacji komputerowych i wymaga znajomości podstaw programowania.
+
+
+Instrukcja do ćwiczenia:
+
+0. Instalcja ROOTa: http://root.cern.ch/drupal/
+
+0.0 Isntalcja Pythii: http://home.thep.lu.se/~torbjorn/pythiaaux/present.html
+
+0.0.0 PDG: http://pdg.lbl.gov/
+
+1. Zapoznanie z rozpadami bozonu Higgsa oraz rozpadami leptonów tau, BR(H->tau tau)=???
+   BR(tau-> pi + nu)
+
+2. Przeprowadzenie symulacji komputerowych produkcji i rozpadu bozonu Higgsa w zderzeniach proton-proton
+   i wykonanie histogramów rozkładów kontrolnych 
+   (masa niezmiennicza produktów rozpadu tau+, tau-, masa niezmiennicza pary tau+, tau-)
+   W symulacjach wystarczy ograniczyć rozpdady leptonu tau do jednego kanału: tau-> pi + nu
+
+3. Właściwa część ćwiczenia: wyznaczenie rozkładu kąta między płaszczyznami rozpadu tau+ tau-. 
+   Kąt jest mierzony w układzie spoczynkowym bozonu Higgsa. Istotnym elementej tej części jest właściwa 
+   definicja płaszczyzn rozpadu. 
+   Wskazówka 1: w geometrii płaszczyzna jest wyznaczane przez wektor normalny do tej płaszczyzny
+   Wskazówka 2: wynik iloczynu wektorowego jest prostopadły do płaszczyzny wyznaczonej przez składniki
+                iloczynu
+   Wskazówka 3: Przy definicji płaszczyzn rozpadu tau+ i tau- należy użyć jednego wspólnego wektora,
+              by orientacja obu płaszczyzn była spójna.
+
+4. Porównanie uzyskanego rozkładu z przewidywaniami modelowymi dla parzystości P=+1 oraz dla P=-1
+
+   Wskazówka: Rozkłady kąta między płaszczyznami rozpadu dla rozpadu na dwa fermiony (tau-tau lub top-top)
+              można znaleźć w publikacji 
+              "The Anatomy of Electro-Weak Symmetry Breaking. I: The Higgs boson in the Standard Model",
+              arXiv:hep-ph/0503172
+
+
+
