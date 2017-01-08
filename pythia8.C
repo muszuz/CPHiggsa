@@ -50,8 +50,8 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
    TTree *tree = new TTree("Data","Pythia8 events");
    TBranch *branch = tree->Branch("Particles",particles);
 
-    Double x[nev];
-    Double y[nev];
+    Double_t x[nev];
+    Double_t y[nev];
 // Event loop
    for (Int_t iev = 0; iev < nev; iev++) {
       pythia8->GenerateEvent();
