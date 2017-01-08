@@ -50,7 +50,8 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
    TTree *tree = new TTree("Data","Pythia8 events");
    TBranch *branch = tree->Branch("Particles",particles);
 
-    
+    Double x[nev];
+    Double y[nev];
 // Event loop
    for (Int_t iev = 0; iev < nev; iev++) {
       pythia8->GenerateEvent();
@@ -68,23 +69,23 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       for (Int_t ip = 0; ip < np; ip++) {
          TParticle* part = (TParticle*) particles->At(ip);
          Int_t ist = part->GetStatusCode();
-    // Positive codes are final particles.
+         // Positive codes are final particles.
          if (ist <= 0) continue;
-    /// Look only at pions and neutrinos
+         /// Look only at pions and neutrinos
          Int_t pdg = part->GetPdgCode();
-    if(abs(pdg)!=211 && abs(pdg)!=16) continue;
-    /// Select pions from tau decays
-    Int_t motherId = part->GetMother(0);
-    if(motherId<0) continue;
-         TParticle* mother = (TParticle*) particles->At(motherId);
-    Int_t pdgMother = mother->GetPdgCode();     
-    if(abs(pdg)==211 && abs(pdgMother)!=15) continue;
-    ///////////////
-    if(pdg==211 && piPlus.E()<1) piPlus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
-    if(pdg==-211 &&  piMinus.E()<1) piMinus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+          if(abs(pdg)!=211 && abs(pdg)!=16) continue;
+          /// Select pions from tau decays
+          Int_t motherId = part->GetMother(0);
+          if(motherId<0) continue;
+               TParticle* mother = (TParticle*) particles->At(motherId);
+          Int_t pdgMother = mother->GetPdgCode();     
+          if(abs(pdg)==211 && abs(pdgMother)!=15) continue;
+          ///////////////
+          if(pdg==211 && piPlus.E()<1) piPlus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+          if(pdg==-211 &&  piMinus.E()<1) piMinus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
 
-    if(pdg==16 && nuTau.E()<1) nuTau = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
-    if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+          if(pdg==16 && nuTau.E()<1) nuTau = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+          if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
       }
 
 
@@ -92,20 +93,31 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
       using std::cout;
       using std::endl;
-      cout << "piPlus.Px = " << piPlus.Px() << ", piPlus.Py = " << piPlus.Py() << " piPlus.Pz = " << piPlus.Pz() << endl;
-      cout << "nuTauBar.Px = " << nuTauBar.Px() << ", nuTauBar.Py = " << nuTauBar.Py() << " nuTauBar.Pz = " << nuTauBar.Pz() << endl;
-      cout << "piMinus.Px = " << piMinus.Px() << ", piMinus.Py = " << piMinus.Py() << " piMinus.Pz = " << piMinus.Pz() << endl;
-      cout << "nuTau.Px = " << nuTau.Px() << ", nuTau.Py = " << nuTau.Py() << " nuTau.Pz = " << nuTau.Pz() << endl;
-      cout << "cross_P1.Px = " << cross_P1.Px() << ", cross_P1.Py = " << cross_P1.Py() << " cross_P1.Pz = " << cross_P1.Pz() << endl;
-      cout << "cross_P2.Px = " << cross_P2.Px() << ", cross_P2.Py = " << cross_P2.Py() << " cross_P2.Pz = " << cross_P2.Pz() << endl;
-
+      // cout << "piPlus.Px = " << piPlus.Px() << ", piPlus.Py = " << piPlus.Py() << " piPlus.Pz = " << piPlus.Pz() << endl;
+      // cout << "nuTauBar.Px = " << nuTauBar.Px() << ", nuTauBar.Py = " << nuTauBar.Py() << " nuTauBar.Pz = " << nuTauBar.Pz() << endl;
+      // cout << "piMinus.Px = " << piMinus.Px() << ", piMinus.Py = " << piMinus.Py() << " piMinus.Pz = " << piMinus.Pz() << endl;
+      // cout << "nuTau.Px = " << nuTau.Px() << ", nuTau.Py = " << nuTau.Py() << " nuTau.Pz = " << nuTau.Pz() << endl;
+      // cout << "cross_P1.Px = " << cross_P1.Px() << ", cross_P1.Py = " << cross_P1.Py() << " cross_P1.Pz = " << cross_P1.Pz() << endl;
+      // cout << "cross_P2.Px = " << cross_P2.Px() << ", cross_P2.Py = " << cross_P2.Py() << " cross_P2.Pz = " << cross_P2.Pz() << endl;
 
       Double_t zalpl1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
       Double_t zalpl2[3] = {cross_P2.Px(), cross_P2.Py(),cross_P2.Pz()};
       Double_t cth = cross_P1.Dot(cross_P2) / ( TMath::Normalize(zalpl1) * TMath::Normalize(zalpl2) );
-      cout << "cth = " << cth << endl;
+      // cout << "cth = " << cth << endl;
       Double_t th = TMath::ACos(cth);
-      std::cout << "th = " << th << endl << endl;
+      // std::cout << "th = " << th << endl << endl;
+
+      //Wyznaczam mase tau:
+      TLorentzVector tau = piPlus + nuTauBar;
+      Double_t mt = tau.M();
+      Double_t mh = p4Sum.M();
+
+      Double_t beta_t = TMath::Sqrt( ( 1 - 4 * mt * mt ) / ( mh * mh ) );
+
+      Double_t funkcja = ( 2 * ( 5 + beta_t * beta_t ) ) / ( 15 * ( 1 - beta_t * beta_t ) );
+
+      x[iev] = th;
+      y[iev] = funkcja;
 
       p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
       hMass->Fill(p4Sum.M());
@@ -117,4 +129,6 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
  
    TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
    hMass->Draw();
+
+   TGraph *gr = new TGraph(nev, x, y);
  }
