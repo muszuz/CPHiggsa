@@ -100,7 +100,7 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       cout << "cross_P2.Px = " << cross_P2.Px() << ", cross_P2.Py = " << cross_P2.Py() << " cross_P2.Pz = " << cross_P2.Pz() << endl;
 
 
-      Double_t cth = cross_P1.Dot(cross_P2);
+      Double_t cth = cross_P1.Dot(cross_P2) / ( cross_P1.Normalize() * cross_P2.Normalize() );
       cout << "cth = " << cth << endl;
       Double_t th = TMath::ACos(cth);
       std::cout << "th = " << th << endl << endl;
