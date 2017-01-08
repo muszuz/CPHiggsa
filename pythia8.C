@@ -68,28 +68,28 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       for (Int_t ip = 0; ip < np; ip++) {
          TParticle* part = (TParticle*) particles->At(ip);
          Int_t ist = part->GetStatusCode();
-	 // Positive codes are final particles.
+    // Positive codes are final particles.
          if (ist <= 0) continue;
-	 /// Look only at pions and neutrinos
+    /// Look only at pions and neutrinos
          Int_t pdg = part->GetPdgCode();
-	 if(abs(pdg)!=211 && abs(pdg)!=16) continue;
-	 /// Select pions from tau decays
-	 Int_t motherId = part->GetMother(0);
-	 if(motherId<0) continue;
+    if(abs(pdg)!=211 && abs(pdg)!=16) continue;
+    /// Select pions from tau decays
+    Int_t motherId = part->GetMother(0);
+    if(motherId<0) continue;
          TParticle* mother = (TParticle*) particles->At(motherId);
-	 Int_t pdgMother = mother->GetPdgCode();     
-	 if(abs(pdg)==211 && abs(pdgMother)!=15) continue;
-	 ///////////////
-	 if(pdg==211 && piPlus.E()<1) piPlus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
-	 if(pdg==-211 &&  piMinus.E()<1) piMinus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+    Int_t pdgMother = mother->GetPdgCode();     
+    if(abs(pdg)==211 && abs(pdgMother)!=15) continue;
+    ///////////////
+    if(pdg==211 && piPlus.E()<1) piPlus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+    if(pdg==-211 &&  piMinus.E()<1) piMinus = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
 
-	 if(pdg==16 && nuTau.E()<1) nuTau = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
-	 if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+    if(pdg==16 && nuTau.E()<1) nuTau = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
+    if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
       }
 
 
-      TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
-      TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),-piMinus.Pz()).cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),-nuTauBar.Pz()));
+      TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
+      TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),-piMinus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),-nuTauBar.Pz()));
       Double_T cth = cross_P1.Dot(cross_P2);
       Double_T th = ACos(cth);
       std::cout << "th = " << th << std::endl;
