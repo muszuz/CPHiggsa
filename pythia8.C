@@ -90,6 +90,13 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
 
       TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
       TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
+      using std::cout;
+      using std::endl;
+      cout << "piPlus.Px = " << piPlus.Px() << ", piPlus.Py = " << piPlus.Py() << " piPlus.Pz = " << piPlus.Pz() << endl;
+      cout << "nuTauBar.Px = " << nuTauBar.Px() << ", nuTauBar.Py = " << nuTauBar.Py() << " nuTauBar.Pz = " << nuTauBar.Pz() << endl;
+      cout << "piMinus.Px = " << piMinus.Px() << ", piMinus.Py = " << piMinus.Py() << " piMinus.Pz = " << piMinus.Pz() << endl;
+      cout << "nuTau.Px = " << nuTau.Px() << ", nuTau.Py = " << nuTau.Py() << " nuTau.Pz = " << nuTau.Pz() << endl;
+      
       Double_t cth = cross_P1.Dot(cross_P2);
       Double_t th = TMath::ACos(cth);
       std::cout << "th = " << th << std::endl;
