@@ -1,3 +1,5 @@
+#include <iostream>
+
 void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
    const char *p8dataenv = gSystem->Getenv("PYTHIA8DATA"); 
    if (!p8dataenv) {
@@ -86,12 +88,12 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       }
 
 
-      TVector3 cross_P1 = TVector3(piPlus->Px(),piPlus->Py(),piPlus->Pz()).cross(TVector3(nuTau->Px(),nuTau->Py(),nuTau->Pz()));
-      TVector3 cross_P2 = TVector3(piMinus->Px(),piMinus->Py(),-piMinus->Pz()).cross(TVector3(nuTauBar->Px(),nuTauBar->Py(),-nuTauBar->Pz()));
+      TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
+      TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),-piMinus.Pz()).cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),-nuTauBar.Pz()));
       Double_T cth = cross_P1.Dot(cross_P2);
       Double_T th = ACos(cth);
       std::cout << "th = " << th << std::endl;
-        
+
       p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
       hMass->Fill(p4Sum.M());
    }
