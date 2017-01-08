@@ -100,7 +100,6 @@
          Double_t mt = tau.M();
          Double_t mh = p4Sum.M();
 
-         std::cout << "cth = " << cth << std::endl;
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
          hMass->Fill(p4Sum.M());
       }
