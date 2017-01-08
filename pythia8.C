@@ -58,7 +58,7 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
    //    y[i]=0;
    // }
 
-   TGraph *gr = new TGraph(nev, x, y);
+   TGraph *gr = new TGraph();
 
 // Event loop
    for (Int_t iev = 0; iev < nev; iev++) {
