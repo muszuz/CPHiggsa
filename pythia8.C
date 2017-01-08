@@ -96,10 +96,14 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       cout << "nuTauBar.Px = " << nuTauBar.Px() << ", nuTauBar.Py = " << nuTauBar.Py() << " nuTauBar.Pz = " << nuTauBar.Pz() << endl;
       cout << "piMinus.Px = " << piMinus.Px() << ", piMinus.Py = " << piMinus.Py() << " piMinus.Pz = " << piMinus.Pz() << endl;
       cout << "nuTau.Px = " << nuTau.Px() << ", nuTau.Py = " << nuTau.Py() << " nuTau.Pz = " << nuTau.Pz() << endl;
-      
+      cout << "cross_P1.Px = " << cross_P1.Px() << ", cross_P1.Py = " << cross_P1.Py() << " cross_P1.Pz = " << cross_P1.Pz() << endl;
+      cout << "cross_P2.Px = " << cross_P2.Px() << ", cross_P2.Py = " << cross_P2.Py() << " cross_P2.Pz = " << cross_P2.Pz() << endl;
+
+
       Double_t cth = cross_P1.Dot(cross_P2);
+      cout << "cth = " << cth << endl;
       Double_t th = TMath::ACos(cth);
-      std::cout << "th = " << th << std::endl;
+      std::cout << "th = " << th << endl << endl;
 
       p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
       hMass->Fill(p4Sum.M());
