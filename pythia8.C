@@ -130,5 +130,6 @@ void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
    TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
    hMass->Draw();
 
-   // TGraph *gr = new TGraph(nev, x, y);
+   TGraph *gr = new TGraph(nev, x, y);
+   gr->Draw("jasiek");
  }
