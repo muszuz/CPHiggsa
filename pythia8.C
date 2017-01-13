@@ -86,19 +86,24 @@
              if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
          }
 
+         // 
+         //TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
+         //TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
+          // wyznaczam 4-wektor tau (suma 4-wektorów piPlus i nutaubar)
+         TVector3 vecttau = TVector3( piPlus.Px() + nuTauBar.Px(), piPlus.Py() + nuTauBar.Py(), piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
+         // iloczyn wektorowy 
+         TVector3 cross_tpp = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
+         TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));      
+         // wyznaczenie kata azymutalnego 
 
-         TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
-         TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
+         //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
+         //Double_t vec2[3] = {cross_P2.Px(), cross_P2.Py(),cross_P2.Pz()};
+         //Double_t cth = cross_P1.Dot(cross_P2) / ( TMath::Normalize(vec1) * TMath::Normalize(vec2) );
+         //Double_t th = TMath::ACos(cth);
 
-         Double_t zalpl1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
-         Double_t zalpl2[3] = {cross_P2.Px(), cross_P2.Py(),cross_P2.Pz()};
-         Double_t cth = cross_P1.Dot(cross_P2) / ( TMath::Normalize(zalpl1) * TMath::Normalize(zalpl2) );
-         Double_t th = TMath::ACos(cth);
-
-         // //Wyznaczam mase tau:
-         TLorentzVector tau = piPlus + nuTauBar;
-         Double_t mt = tau.M();
-         Double_t mh = p4Sum.M();
+         Double_t v_tpp[3] = {cross_tpp.Px(), cross_tpp.Py(), cross_tpp.Pz()};
+         Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
+         Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
          hMass->Fill(p4Sum.M());
