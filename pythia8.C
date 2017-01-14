@@ -104,6 +104,7 @@
          Double_t v_tpp[3] = {cross_tpp.Px(), cross_tpp.Py(), cross_tpp.Pz()};
          Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
+         std::cout << "th = " << ct << endl
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
          hMass->Fill(p4Sum.M());
