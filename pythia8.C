@@ -27,8 +27,9 @@
       gSystem->Load("libEGPythia8");
 
    // Histograms
-      TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-       
+      // TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
+       TH1D* marcin = new TH1F("marcin", "rozklad katowy", 100, 0, 3.1415); 
+
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
    // Create pythia8 object
@@ -106,7 +107,9 @@
          Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
          Double_t th = TMath::ACos(ct);
-         std::cout << "th = " << th << endl;
+         // std::cout << "th = " << th << endl;
+         marcin.Fill(th);
+
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
          hMass->Fill(p4Sum.M());
@@ -118,5 +121,6 @@
     
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
+      marcin->Draw();
 
     }
