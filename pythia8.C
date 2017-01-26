@@ -94,7 +94,7 @@
             piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), -piMinus.Pz()));      
+         TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));      
          // wyznaczenie kata azymutalnego 
 
          //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
@@ -105,7 +105,8 @@
          Double_t v_tpp[3] = {cross_tpp.Px(), cross_tpp.Py(), cross_tpp.Pz()};
          Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
-         std::cout << "th = " << ct << endl;
+         Double_t th = TMath::ACos(ct);
+         std::cout << "th = " << th << endl;
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
          hMass->Fill(p4Sum.M());
