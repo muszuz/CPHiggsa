@@ -108,7 +108,7 @@
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
          Double_t th = TMath::ACos(ct);
          // std::cout << "th = " << th << endl;
-         marcin.Fill(th);
+         marcin->Fill(th);
 
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
