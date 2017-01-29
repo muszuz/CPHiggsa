@@ -97,7 +97,7 @@
             piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()).Cross(TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()));      
+         TVector3 cross_tpm = TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()).Cross(TVector3(tauminus.Px(), tauminus.Py(), tauminus.Pz()));      
          // wyznaczenie kata azymutalnego 
 
          //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
