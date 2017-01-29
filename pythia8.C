@@ -90,8 +90,8 @@
          // 
          
           // wyznaczam 4-wektor tau+,tau- (suma 4-wektorów piPlus i nutaubar)
-         TLorentzVector tauplus = TLorentzVector( piPlus.Px() + nuTauBar.Px(), piPlus.Py() + nuTauBar.Py(), 
-            piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
+         TLorentzVector tauplus = TLorentzVector( piPlus.Px() + nuTau.Px(), piPlus.Py() + nuTau.Py(), 
+            piPlus.Pz() + nuTau.Pz(), piPlus.Energy() + nuTau.Energy());
          TLorentzVector tauminus = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
             piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
          // iloczyn wektorowy 
