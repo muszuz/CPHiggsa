@@ -28,7 +28,7 @@
 
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* marcin = new TH1D("marcin", "rozklad katowy", 6, 0, 3.1415); 
+      TH1D* Cp = new TH1D("Cp", "rozklad katowy", 6, 0, 3.1415); 
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
@@ -88,29 +88,23 @@
          }
 
          // 
-         //TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
-         //TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
-          // wyznaczam 4-wektor tau (suma 4-wektorów piPlus i nutaubar)
+         
+          // wyznaczam 4-wektor tau+,tau- (suma 4-wektorów piPlus i nutaubar)
          TLorentzVector tauplus = TLorentzVector( piPlus.Px() + nuTauBar.Px(), piPlus.Py() + nuTauBar.Py(), 
             piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          TLorentzVector tauminus = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
             piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()).Cross(TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()));
-         // wyznaczenie kata azymutalnego 
-
-         //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
-         //Double_t vec2[3] = {cross_P2.Px(), cross_P2.Py(),cross_P2.Pz()};
-         //Double_t cth = cross_P1.Dot(cross_P2) / ( TMath::Normalize(vec1) * TMath::Normalize(vec2) );
-         //Double_t th = TMath::ACos(cth);
+         TVector3 cross_tpm = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));
+         // wyznaczenie kata azymutalnego
 
          Double_t v_tpp[3] = {cross_tpp.Px(), cross_tpp.Py(), cross_tpp.Pz()};
          Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
          Double_t th = TMath::ACos(ct);
          // std::cout << "th = " << th << endl;
-         marcin->Fill(th);
+         Cp->Fill(th);
 
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
@@ -123,6 +117,8 @@
     
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
-      marcin->Draw();
+      Double_t norm = 1;
+      Cp->Scale(norm, "width");
+      Cp->Draw();
 
     }
