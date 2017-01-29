@@ -91,8 +91,8 @@
          //TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
          //TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
           // wyznaczam 4-wektor tau (suma 4-wektorów piPlus i nutaubar)
-         TLorentzVector vecttau = TLorentzVector( piPlus.Px() + nuTau.Px(), piPlus.Py() + nuTau.Py(), 
-            piPlus.Pz() + nuTau.Pz(), piPlus.Energy() + nuTau.Energy());
+         TLorentzVector vecttau = TLorentzVector( piPlus.Px() + nuTauBar.Px(), piPlus.Py() + nuTauBar.Py(), 
+            piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
          TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));      
