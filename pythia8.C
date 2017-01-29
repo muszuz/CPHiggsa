@@ -28,7 +28,7 @@
 
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* cp = new TH1D("marcin", "rozklad katowy", 6, 0, 3.1415); 
+      TH1D* marcin = new TH1D("marcin", "rozklad katowy", 100, 0, 3.1415); 
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
@@ -91,11 +91,11 @@
          //TVector3 cross_P1 = TVector3(piPlus.Px(),piPlus.Py(),piPlus.Pz()).Cross(TVector3(nuTauBar.Px(),nuTauBar.Py(),nuTauBar.Pz()));
          //TVector3 cross_P2 = TVector3(piMinus.Px(),piMinus.Py(),piMinus.Pz()).Cross(TVector3(nuTau.Px(),nuTau.Py(),nuTau.Pz()));
           // wyznaczam 4-wektor tau (suma 4-wektorów piPlus i nutaubar)
-         TLorentzVector vecttau = TLorentzVector( piPlus.Px() + nuTau.Px(), piPlus.Py() + nuTau.Py(), 
+         TLorentzVector vecttau = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
             piPlus.Pz() + nuTau.Pz(), piPlus.Energy() + nuTau.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()).Cross(TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()));      
+         TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));      
          // wyznaczenie kata azymutalnego 
 
          //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
@@ -108,7 +108,7 @@
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
          Double_t th = TMath::ACos(ct);
          // std::cout << "th = " << th << endl;
-         cp->Fill(th);
+         marcin->Fill(th);
 
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
@@ -121,6 +121,6 @@
     
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
-      cp->Draw();
+      marcin->Draw();
 
     }
