@@ -28,7 +28,7 @@
 
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* marcin = new TH1D("marcin", "rozklad katowy", 100, 0, 3.1415); 
+      TH1D* cp = new TH1D("marcin", "rozklad katowy", 6, 0, 3.1415); 
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
@@ -95,7 +95,7 @@
             piPlus.Pz() + nuTau.Pz(), piPlus.Energy() + nuTau.Energy());
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));      
+         TVector3 cross_tpm = TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()).Cross(TVector3(vecttau.Px(), vecttau.Py(), vecttau.Pz()));      
          // wyznaczenie kata azymutalnego 
 
          //Double_t vec1[3] = {cross_P1.Px(), cross_P1.Py(),cross_P1.Pz()};
@@ -108,7 +108,7 @@
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
          Double_t th = TMath::ACos(ct);
          // std::cout << "th = " << th << endl;
-         marcin->Fill(th);
+         cp->Fill(th);
 
 
          p4Sum=piMinus+piPlus+nuTau+nuTauBar;     
@@ -121,6 +121,6 @@
     
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
-      marcin->Draw();
+      cp->Draw();
 
     }
