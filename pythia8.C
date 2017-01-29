@@ -118,7 +118,7 @@
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
       Double_t norm = 1;
-      Cp->Scale(norm, "width");
+      Cp->Scale(norm/Cp->Integral("width"));
       Cp->Draw();
 
     }
