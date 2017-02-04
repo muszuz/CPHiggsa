@@ -93,7 +93,7 @@
                                                   piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          TLorentzVector tauminus = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
                                                    piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
-         
+          std::cout < " przed boostem  x = " << tauPlus.Px() <<" y = " << tauPlus.Py()<< " z = " << tauPlus.Pz()<< endl;
          // Boost do ukladu spoczynkowego pary tau tau:
          // Kombinacja tauplus i tauminus
          TLorentzVector tauplusminus = TLorentzVector(tauplus.Px() + tauminus.Px(),
@@ -102,10 +102,11 @@
                                                       tauplus.Energy() + tauminus.Energy());
          // Boostvector do ukladu tauplusminus:
          TVector3 tauplusminus_BoostVector = -tauplusminus.BoostVector();
-         
+    
          // tauplus w nowym ukladzie:
-         //TLorentzVector tauplus_newsys = tauplus;
-         //tauplus.Boost(tauplusminus_BoostVector);
+         TLorentzVector tauplus_newsys = tauplus;
+         tauplus.Boost(tauplusminus_BoostVector);
+         std::cout < " po    boostem  x = " << tauplus_newsys.Px() <<" y = " << tauplus_newsys.Py()<< " z = " << tauplus_newsys.Pz()<< endl;
          // piplus w nowym ukladzie:
          TLorentzVector piPlus_newsys = piPlus;
          piPlus.Boost(tauplusminus_BoostVector);
@@ -114,9 +115,9 @@
          piMinus.Boost(tauplusminus_BoostVector);
 
          // iloczyn wektorowy 
-         TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
+         TVector3 cross_tpp = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
                                       .Cross(TVector3(piPlus_newsys.Px(), piPlus_newsys.Py(), piPlus_newsys.Pz()));
-         TVector3 cross_tpm = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
+         TVector3 cross_tpm = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
                                       .Cross(TVector3(piMinus_newsys.Px(), piMinus_newsys.Py(), piMinus_newsys.Pz()));
          
          // wyznaczenie kata azymutalnego
