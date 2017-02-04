@@ -105,14 +105,14 @@
     
          // tauplus w nowym ukladzie:
          TLorentzVector tauplus_newsys = tauplus;
-         tauplus.Boost(tauplusminus_BoostVector);
+         tauplus_newsys.Boost(tauplusminus_BoostVector);
          std::cout << " po    boostem  x = " << tauplus_newsys.Px() <<" y = " << tauplus_newsys.Py()<< " z = " << tauplus_newsys.Pz()<< endl;
          // piplus w nowym ukladzie:
          TLorentzVector piPlus_newsys = piPlus;
-         piPlus.Boost(tauplusminus_BoostVector);
+         piPlus_newsys.Boost(tauplusminus_BoostVector);
          // piminus w nowym ukladzie:
          TLorentzVector piMinus_newsys = piMinus;
-         piMinus.Boost(tauplusminus_BoostVector);
+         piMinus_newsys.Boost(tauplusminus_BoostVector);
 
          // iloczyn wektorowy 
          TVector3 cross_tpp = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
