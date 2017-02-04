@@ -106,7 +106,7 @@
          // tauplus w nowym ukladzie:
          TLorentzVector tauplus_newsys = tauplus;
          tauplus.Boost(tauplusminus_BoostVector);
-         std::cout < " po    boostem  x = " << tauplus_newsys.Px() <<" y = " << tauplus_newsys.Py()<< " z = " << tauplus_newsys.Pz()<< endl;
+         std::cout << " po    boostem  x = " << tauplus_newsys.Px() <<" y = " << tauplus_newsys.Py()<< " z = " << tauplus_newsys.Pz()<< endl;
          // piplus w nowym ukladzie:
          TLorentzVector piPlus_newsys = piPlus;
          piPlus.Boost(tauplusminus_BoostVector);
