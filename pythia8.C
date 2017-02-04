@@ -101,7 +101,7 @@
                                                       tauplus.Pz() + tauminus.Pz(),
                                                       tauplus.Energy() + tauminus.Energy());
          // Boostvector do ukladu tauplusminus:
-         TVector3 tauplusminus_BoostVector = tauplusminus.BoostVector();
+         TVector3 tauplusminus_BoostVector = -tauplusminus.BoostVector();
     
          // tauplus w nowym ukladzie:
          TLorentzVector tauplus_newsys = tauplus;
