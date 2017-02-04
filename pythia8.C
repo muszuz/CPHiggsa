@@ -93,7 +93,7 @@
                                                   piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          TLorentzVector tauminus = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
                                                    piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
-          std::cout < " przed boostem  x = " << tauplus.Px() <<" y = " << tauplus.Py()<< " z = " << tauplus.Pz()<< endl;
+          std::cout << " przed boostem  x = " << tauplus.Px() <<" y = " << tauplus.Py()<< " z = " << tauplus.Pz()<< endl;
          // Boost do ukladu spoczynkowego pary tau tau:
          // Kombinacja tauplus i tauminus
          TLorentzVector tauplusminus = TLorentzVector(tauplus.Px() + tauminus.Px(),
