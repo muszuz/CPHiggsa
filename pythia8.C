@@ -114,9 +114,9 @@
          piMinus.Boost(tauplusminus_BoostVector);
 
          // iloczyn wektorowy 
-         TVector3 cross_tpp = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+         TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
                                       .Cross(TVector3(piPlus_newsys.Px(), piPlus_newsys.Py(), piPlus_newsys.Pz()));
-         TVector3 cross_tpm = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+         TVector3 cross_tpm = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
                                       .Cross(TVector3(piMinus_newsys.Px(), piMinus_newsys.Py(), piMinus_newsys.Pz()));
          
          // wyznaczenie kata azymutalnego
