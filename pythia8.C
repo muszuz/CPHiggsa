@@ -87,18 +87,39 @@
              if(pdg==-16 && nuTauBar.E()<1) nuTauBar = TLorentzVector(part->Px(),part->Py(),part->Pz(),part->Energy());
          }
 
-         // 
          
           // wyznaczam 4-wektor tau+,tau- (suma 4-wektorów piPlus i nutaubar)
          TLorentzVector tauplus = TLorentzVector( piPlus.Px() + nuTauBar.Px(), piPlus.Py() + nuTauBar.Py(), 
-            piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
+                                                  piPlus.Pz() + nuTauBar.Pz(), piPlus.Energy() + nuTauBar.Energy());
          TLorentzVector tauminus = TLorentzVector( piMinus.Px() + nuTau.Px(), piMinus.Py() + nuTau.Py(), 
-            piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
-         // iloczyn wektorowy 
-         TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()).Cross(TVector3(piPlus.Px(), piPlus.Py(), piPlus.Pz()));
-         TVector3 cross_tpm = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz()).Cross(TVector3(piMinus.Px(), piMinus.Py(), piMinus.Pz()));
-         // wyznaczenie kata azymutalnego
+                                                   piMinus.Pz() + nuTau.Pz(), piMinus.Energy() + nuTau.Energy());
+         
+         // Boost do ukladu spoczynkowego pary tau tau:
+         // Kombinacja tauplus i tauminus
+         TLorentzVector tauplusminus = TLorentzVector(tauplus.Px() + tauminus.Px(),
+                                                      tauplus.Py() + tauminus.Py()
+                                                      tauplus.Pz() + tauminus.Pz()
+                                                      tauplus.Energy() + tauminus.Energy());
+         // Boostvector do ukladu tauplusminus:
+         TVector3 tauplusminus_BoostVector = tauplusminus.BoostVector();
+         
+         // tauplus w nowym ukladzie:
+         TLorentzVector tauplus_newsys = tauplus;
+         tauplus.Boost(tauplusminus_BoostVector);
+         // piplus w nowym ukladzie:
+         TLorentzVector piPlus_newsys = piPlus;
+         piPlus.Boost(tauplusminus_BoostVector);
+         // piminus w nowym ukladzie:
+         TLorentzVector piMinus_newsys = piMinus;
+         piMinus.Boost(tauplusminus_BoostVector);
 
+         // iloczyn wektorowy 
+         TVector3 cross_tpp = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+                                      .Cross(TVector3(piPlus_newsys.Px(), piPlus_newsys.Py(), piPlus_newsys.Pz()));
+         TVector3 cross_tpm = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+                                      .Cross(TVector3(piMinus_newsys.Px(), piMinus_newsys.Py(), piMinus_newsys.Pz()));
+         
+         // wyznaczenie kata azymutalnego
          Double_t v_tpp[3] = {cross_tpp.Px(), cross_tpp.Py(), cross_tpp.Pz()};
          Double_t v_tpm[3] = {cross_tpm.Px(), cross_tpm.Py(), cross_tpm.Pz()};
          Double_t ct = cross_tpm.Dot(cross_tpp) / (TMath::Normalize(v_tpp) * TMath::Normalize(v_tpm));
