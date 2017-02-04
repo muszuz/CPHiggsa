@@ -104,8 +104,8 @@
          TVector3 tauplusminus_BoostVector = tauplusminus.BoostVector();
          
          // tauplus w nowym ukladzie:
-         TLorentzVector tauplus_newsys = tauplus;
-         tauplus.Boost(tauplusminus_BoostVector);
+         //TLorentzVector tauplus_newsys = tauplus;
+         //tauplus.Boost(tauplusminus_BoostVector);
          // piplus w nowym ukladzie:
          TLorentzVector piPlus_newsys = piPlus;
          piPlus.Boost(tauplusminus_BoostVector);
