@@ -97,8 +97,8 @@
          // Boost do ukladu spoczynkowego pary tau tau:
          // Kombinacja tauplus i tauminus
          TLorentzVector tauplusminus = TLorentzVector(tauplus.Px() + tauminus.Px(),
-                                                      tauplus.Py() + tauminus.Py()
-                                                      tauplus.Pz() + tauminus.Pz()
+                                                      tauplus.Py() + tauminus.Py(),
+                                                      tauplus.Pz() + tauminus.Pz(),
                                                       tauplus.Energy() + tauminus.Energy());
          // Boostvector do ukladu tauplusminus:
          TVector3 tauplusminus_BoostVector = tauplusminus.BoostVector();
