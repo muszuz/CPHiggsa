@@ -104,8 +104,8 @@
          TVector3 tauplusminus_BoostVector = -tauplusminus.BoostVector();
     
          // tauplus w nowym ukladzie:
-         TLorentzVector tauplus_newsys = tauplus;
-         tauplus_newsys.Boost(tauplusminus_BoostVector);
+         //TLorentzVector tauplus_newsys = tauplus;
+         //tauplus_newsys.Boost(tauplusminus_BoostVector);
          //std::cout << " po    boostem  x = " << tauplus_newsys.Px() <<" y = " << tauplus_newsys.Py()<< " z = " << tauplus_newsys.Pz()<< endl;
          // piplus w nowym ukladzie:
          TLorentzVector piPlus_newsys = piPlus;
@@ -115,9 +115,9 @@
          piMinus_newsys.Boost(tauplusminus_BoostVector);
 
          // iloczyn wektorowy 
-         TVector3 cross_tpp = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+         TVector3 cross_tpp = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
                                       .Cross(TVector3(piPlus_newsys.Px(), piPlus_newsys.Py(), piPlus_newsys.Pz()));
-         TVector3 cross_tpm = TVector3(tauplus_newsys.Px(), tauplus_newsys.Py(), tauplus_newsys.Pz())
+         TVector3 cross_tpm = TVector3(tauplus.Px(), tauplus.Py(), tauplus.Pz())
                                       .Cross(TVector3(piMinus_newsys.Px(), piMinus_newsys.Py(), piMinus_newsys.Pz()));
          
          // wyznaczenie kata azymutalnego
