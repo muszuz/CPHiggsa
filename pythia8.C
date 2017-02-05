@@ -139,10 +139,12 @@
     
       TCanvas* c1 = new TCanvas("c1","Pythia8 test example",800,800);
       hMass->Draw();
-      Double_t scale = Cp->GetXaxis()->GetBinWidth(1)/ *(Cp->GetIntegral());
-      Cp->Scale(scale);
+      //Double_t scale = Cp->GetXaxis()->GetBinWidth(1)/ *(Cp->GetIntegral());
+      //Cp->Scale(scale);
       //uble_t norm = 1;
       //>Scale(norm/Cp->Integral("width"));
+      Double_t norm = Cp->GetEntries();
+      Cp->Scale(1/norm);
       Cp->Draw();
 
     }
