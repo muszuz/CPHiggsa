@@ -143,6 +143,6 @@
       Cp->Scale(scale);
       //uble_t norm = 1;
       //>Scale(norm/Cp->Integral("width"));
-      //->Draw();
+      Cp->Draw();
 
     }
