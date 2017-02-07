@@ -28,7 +28,7 @@
 
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* Cp = new TH1D("Cp", "rozklad katowy", 20, 0, 3.1415); 
+      TH1D* Cp = new TH1D("Cp", "rozklad katowy", 6, 0, 3.1415); 
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
