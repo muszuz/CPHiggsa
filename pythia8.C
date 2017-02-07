@@ -154,8 +154,8 @@
       Double_t norm = Cp->GetEntries();
       Cp->Scale(3.1415/norm);
       Cp->SetStats(kFALSE);
-      Cp->GetYaxis()->SetTitle("Rozkład katowy");
-      Cp->GetXaxis()->SetTitle("Φ* [rad]");
+      Cp->GetYaxis()->SetTitle("Rozklad katowy");
+      Cp->GetXaxis()->SetTitle("Phi* [rad]");
 
       TF1 *f1 = new TF1("fit", fitFcn, 0, 3.1415,3);
       f1->SetParameters(1,3.1415,16);
