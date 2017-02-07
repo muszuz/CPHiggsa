@@ -1,11 +1,10 @@
    #include <iostream>
 
-// fit
-   // Double_t fitFunction(Double_t *x, Double_t *par) {
-   //    return 
+   Double_t background(Double_t *x, Double_t *par) {
+      // return par[0] + par[1]*x[0] + par[2]*x[0]*x[0];
+      return (par[0] + (par[1]*par[1])/par[2])*TMath::Cos(x[0]);
+   }
 
-   //    background(x,par) + lorentzianPeak(x,&par[3]);
-   // }
 
 
    void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
@@ -158,7 +157,7 @@
       Cp->GetYaxis()->SetTitle("dΓ/Γ");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
 
-      TF1 *f1 = new TF1("f1","([0] + ([1]*[1])/[2])*cos(x)",0,3.1415);
+      TF1 *f1 = new TF1("f1", fitFcn, 0,3.1415,3);
       f1->SetParameters(1,3.1415,16);
 
       Cp->Fit("f1");
