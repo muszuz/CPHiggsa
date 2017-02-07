@@ -28,7 +28,7 @@
 
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* Cp = new TH1D("Cp", " ", 30, 0, 3.1415); 
+      TH1D* Cp = new TH1D("Cp", " ", 20, 0, 3.1415); 
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
@@ -143,12 +143,12 @@
       //Cp->Scale(scale);
       //Double_t scale = norm/Cp->Integral();
       //Cp->Scale(scale);
-      //Double_t norm = Cp->GetEntries();
-      //Cp->Scale(1/norm);
+      Double_t norm = Cp->GetEntries();
+      Cp->Scale(1/norm);
       Cp->SetStats(kFALSE);
       Cp->GetYaxis()->SetTitle("dΓ/Γ");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
-      Cp->DrawNormalized();
+      Cp->Draw();
       
       
       
