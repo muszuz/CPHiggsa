@@ -141,15 +141,16 @@
       hMass->Draw();
       //Double_t scale = Cp->GetXaxis()->GetBinWidth(1)/ *(Cp->GetIntegral());
       //Cp->Scale(scale);
-      Double_t scale = norm/Cp->Integral();
-      Cp->Scale(scale);
+      //Double_t scale = norm/Cp->Integral();
+      //Cp->Scale(scale);
       //Double_t norm = Cp->GetEntries();
       //Cp->Scale(1/norm);
       Cp->SetStats(kFALSE);
-      Cp->GetXaxis()->SetTitle("theta [rad]");
-      Cp->Draw();
+      Cp->GetYaxis()->SetTitle("dΓ/Γ");
+      Cp->GetXaxis()->SetTitle("Φ* [rad]");
+      Cp->DrawNormalized();
       
       
-      //Cp->GetYaxis()->("dΓ/Γ");
+      
 
     }
