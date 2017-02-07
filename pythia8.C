@@ -1,5 +1,13 @@
    #include <iostream>
 
+// fit
+   // Double_t fitFunction(Double_t *x, Double_t *par) {
+   //    return 
+
+   //    background(x,par) + lorentzianPeak(x,&par[3]);
+   // }
+
+
    void pythia8(Int_t nev  = 1E4, Int_t ndeb = 1){
       const char *p8dataenv = gSystem->Getenv("PYTHIA8DATA"); 
       if (!p8dataenv) {
@@ -29,6 +37,7 @@
    // Histograms
       TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
       TH1D* Cp = new TH1D("Cp", " ", 20, 0, 3.1415); 
+   // fit
 
    // Array of particles
       TClonesArray* particles = new TClonesArray("TParticle", 1000);
@@ -148,7 +157,11 @@
       Cp->SetStats(kFALSE);
       Cp->GetYaxis()->SetTitle("dΓ/Γ");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
-      Cp->Draw();
+
+      TD1 *f1 = new TD1("f1","([0] + ([1]*[1])/[2])*cos(x)",0,3.1415);
+      f1->SetParameters(1,3.1415,16);
+
+      Cp->Fit("f1");
       
       
       
