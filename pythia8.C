@@ -154,7 +154,7 @@
       Double_t norm = Cp->GetEntries();
       Cp->Scale(3.1415/norm);
       Cp->SetStats(kFALSE);
-      Cp->GetYaxis()->SetTitle("dΓ/Γ");
+      Cp->GetYaxis()->SetTitle("Rozkład kątowy");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
 
       TF1 *f1 = new TF1("fit", fitFcn, 0, 3.1415,3);
