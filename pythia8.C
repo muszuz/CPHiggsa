@@ -34,8 +34,8 @@
       gSystem->Load("libEGPythia8");
 
    // Histograms
-      TH1F* hMass = new TH1F("hMass", "Mass of #tau#tau",200,0,200);
-      TH1D* Cp = new TH1D("Cp", " ", 20, 0, 3.1415); 
+      TH1F* hMass = new TH1F("hMass", "",200,0,200);
+      TH1D* Cp = new TH1D("Cp", " ", 60, 0, 3.1415); 
    // fit
 
    // Array of particles
@@ -154,7 +154,7 @@
       Double_t norm = Cp->GetEntries();
       Cp->Scale(3.1415/norm);
       Cp->SetStats(kFALSE);
-      Cp->GetYaxis()->SetTitle("Rozkład kątowy");
+      Cp->GetYaxis()->SetTitle("Rozkład katowy");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
 
       TF1 *f1 = new TF1("fit", fitFcn, 0, 3.1415,3);
