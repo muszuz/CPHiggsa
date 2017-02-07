@@ -1,6 +1,6 @@
    #include <iostream>
 
-   Double_t background(Double_t *x, Double_t *par) {
+   Double_t fitFcn(Double_t *x, Double_t *par) {
       // return par[0] + par[1]*x[0] + par[2]*x[0]*x[0];
       return (par[0] + (par[1]*par[1])/par[2])*TMath::Cos(x[0]);
    }
@@ -161,8 +161,4 @@
       f1->SetParameters(1,3.1415,16);
 
       Cp->Fit("f1");
-      
-      
-      
-
     }
