@@ -158,7 +158,7 @@
       Cp->GetYaxis()->SetTitle("dΓ/Γ");
       Cp->GetXaxis()->SetTitle("Φ* [rad]");
 
-      TD1 *f1 = new TD1("f1","([0] + ([1]*[1])/[2])*cos(x)",0,3.1415);
+      TF1 *f1 = new TF1("f1","([0] + ([1]*[1])/[2])*cos(x)",0,3.1415);
       f1->SetParameters(1,3.1415,16);
 
       Cp->Fit("f1");
