@@ -146,7 +146,7 @@
       Double_t norm = Cp->GetEntries();
       Cp->Scale(1/norm);
       Cp->Draw();
-      Cp->GetXaxis()->("Φ* [rad]");
-      Cp->GetYaxis()->("dΓ/Γ");
+      Cp->GetXaxis()->( std::string(1, (char)232) + " [rad]");
+      //Cp->GetYaxis()->("dΓ/Γ");
 
     }
