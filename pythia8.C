@@ -146,7 +146,7 @@
       //Double_t norm = Cp->GetEntries();
       //Cp->Scale(1/norm);
       Cp->SetStats(kFALSE);
-      Cp->GetXaxis()->("theta [rad]");
+      Cp->GetXaxis()->SetTitle("theta [rad]");
       Cp->Draw();
       
       
