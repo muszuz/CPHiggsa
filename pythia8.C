@@ -162,7 +162,7 @@
 
       Cp->Fit("fit");
       hMass->SetStats(kFALSE);
-      hMass->GetXaxis()->SetTitle("masa niezmiennicza pary tautau");
+      hMass->GetXaxis()->SetTitle("masa niezmiennicza pary tautau [GeV]");
 
        hMass->Draw();
       
