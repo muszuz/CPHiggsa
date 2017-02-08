@@ -161,6 +161,10 @@
       f1->SetParameters(1,3.1415,16);
 
       Cp->Fit("fit");
+      hMass->SetStats(kFALSE);
+      hMass->GetXaxis()->SetTitle("masa niezmiennicza pary tautau");
+
+       hMass->Draw();
       
       
       
