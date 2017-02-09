@@ -34,7 +34,7 @@
       gSystem->Load("libEGPythia8");
 
    // Histograms
-      TH1F* hMass = new TH1F("hMass", "",200,0,200);
+      TH1F* hMass = new TH1F("hMass", "",200,80,140);
       TH1D* Cp = new TH1D("Cp", " ", 20, 0, 3.1415); 
    // fit
 
