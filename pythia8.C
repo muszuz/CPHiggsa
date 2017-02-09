@@ -155,7 +155,7 @@
       Cp->Scale(3.1415/norm);
       Cp->SetStats(kFALSE);
       Cp->GetYaxis()->SetTitle("Rozklad katowy");
-      Cp->GetXaxis()->SetTitle(" #phi* [rad]");
+      Cp->GetXaxis()->SetTitle(" #varPhi* [rad]");
 
       TF1 *f1 = new TF1("fit", fitFcn, 0, 3.1415,3);
       f1->SetParameters(1,3.1415,16);
